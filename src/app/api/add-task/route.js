@@ -16,14 +16,14 @@ export async function POST(req) {
     console.log(title);
     console.log(description);
     console.log(extractReq);
-    const { error } = AddNewTask.valid({ title, description });
-    console.log(error);
-    if (error) {
-      return NextResponse.json({
-        success: false,
-        message: error,
-      });
-    }
+    // const { error } = AddNewTask.valid({ title, description });
+    // console.log(error.details[0].message);
+    // if (error) {
+    //   return NextResponse.json({
+    //     success: false,
+    //     message: error.details[0].message,
+    //   });
+    // }
 
     console.log("start insert data to DB");
     const addResult = await Task.create(extractReq);
