@@ -19,7 +19,7 @@ const Tasks = async () => {
   const tasks = await getTasks();
   return (
     <div>
-      <TaskOverview />
+      <TaskOverview tasks={tasks} />
     </div>
   );
 };

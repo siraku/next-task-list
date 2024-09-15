@@ -11,30 +11,28 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 
-const AddTask = ({ router }) => {
-  const initialTaskFormData = {
-    title: "",
-    description: "",
-  };
+export function EditTask({ currentTaskData, router }) {
   const [openDialog, setOpenDialog] = useState(false);
-  const [taskData, setTaskData] = useState(initialTaskFormData);
+  const [taskData, setTaskData] = useState(currentTaskData);
   const [loading, setLoading] = useState(false);
 
-  const handleSaveTask = async (taskData) => {
+  const handleEditTask = async () => {
     try {
       setLoading(true);
       console.log("start api of add data");
-      const apiResponse = await fetch("/api/add-task", {
-        method: "POST",
-        body: JSON.stringify(taskData),
-      });
+      const apiResponse = await fetch(
+        `/api/update-task?id=${currentTaskData._id}`,
+        {
+          method: "POST",
+          body: JSON.stringify(taskData),
+        }
+      );
       const result = await apiResponse.json();
       console.log("the result is" + result.success);
       setOpenDialog(false);
       setLoading(false);
-      setTaskData(initialTaskFormData);
       router.refresh();
     } catch (error) {
       console.log("the error is " + error);
@@ -42,20 +40,25 @@ const AddTask = ({ router }) => {
   };
 
   return (
-    <Fragment>
-      <Button onClick={() => setOpenDialog(true)}>Add Task</Button>
+    <div>
+      <button
+        className="font-bold hover:scale-[1.1]"
+        onClick={() => setOpenDialog(true)}
+      >
+        Edit
+      </button>
+
       <Dialog
         open={openDialog}
         onOpenChange={() => {
           setOpenDialog(false);
-          setTaskData(initialTaskFormData);
         }}
       >
         <DialogContent className="sm:max-w-[425px] text-white">
           <DialogHeader>
-            <DialogTitle>Add Task</DialogTitle>
+            <DialogTitle>Edit Task</DialogTitle>
             <DialogDescription>
-              Add your task name and description.
+              Edit your task name and description.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
@@ -89,14 +92,12 @@ const AddTask = ({ router }) => {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit" onClick={() => handleSaveTask(taskData)}>
+            <Button type="submit" onClick={() => handleEditTask(taskData)}>
               {loading ? "saving" : "Submit"}
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </Fragment>
+    </div>
   );
-};
-
-export default AddTask;
+}

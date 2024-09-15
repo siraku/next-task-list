@@ -1,16 +1,19 @@
 import ConnectDB from "@/db";
 import Task from "@/model/task";
-import Joi from "joi";
 import { NextResponse } from "next/server";
-
-const AddNewTask = Joi.object({
-  title: Joi.string().required(),
-  description: Joi.string().required(),
-});
 
 export async function POST(req) {
   try {
     await ConnectDB();
+    const { searchParams } = new URL(req.url);
+    console.log(req.url);
+    const id = searchParams.get("id");
+    if (!id) {
+      return NextResponse.json({
+        success: false,
+        message: "id is required",
+      });
+    }
 
     const extractReq = await req.json();
     const { title, description } = extractReq;
@@ -26,18 +29,20 @@ export async function POST(req) {
     //   });
     // }
 
-    console.log("start insert data to DB");
-    const addResult = await Task.create(extractReq);
-    console.log("end insert data to DB");
+    console.log("start update data to DB");
+    const addResult = await Task.findOneAndUpdate({ _id: id }, extractReq, {
+      new: true,
+    });
+    console.log("end update data to DB");
     if (!addResult) {
       return NextResponse.json({
         success: false,
-        message: "failed at inserting data to DB",
+        message: "failed at updating data to DB",
       });
     }
     return NextResponse.json({
       success: true,
-      message: "insert DB data successfully",
+      message: "update DB data successfully",
     });
   } catch (error) {
     console.log(error);
