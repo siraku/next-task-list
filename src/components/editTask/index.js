@@ -42,7 +42,7 @@ export function EditTask({ currentTaskData, router }) {
   return (
     <div>
       <button
-        className="font-bold hover:scale-[1.1]"
+        className="font-bold hover:scale-[1.1] bg-black text-white px-2 rounded-sm"
         onClick={() => setOpenDialog(true)}
       >
         Edit

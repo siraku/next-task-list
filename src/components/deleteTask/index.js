@@ -29,7 +29,7 @@ export function DeleteTask({ id, router }) {
   return (
     <div>
       <button
-        className="font-bold hover:scale-110"
+        className="font-bold hover:scale-110 bg-black text-white px-2 rounded-sm"
         onClick={() => setConfirmdialog(true)}
       >
         Delete
