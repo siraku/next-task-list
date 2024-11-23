@@ -5,6 +5,8 @@ import { Card, CardContent, CardTitle } from "../ui/card";
 import { useRouter } from "next/navigation";
 import { DeleteTask } from "../deleteTask";
 import { EditTask } from "../editTask";
+import Link from "next/link";
+import { IoIosHome } from "react-icons/io";
 
 const TaskOverview = ({ tasks }) => {
   const router = useRouter();
@@ -15,8 +17,13 @@ const TaskOverview = ({ tasks }) => {
   // console.log(tasks);
   return (
     <div className=" min-h-screen flex flex-col bg-gradient-to-r p-10 from-purple-500 to-blue-500">
-      <div>
-        <AddTask router={router} />
+      <div className="flex justify-between">
+        <div>
+          <AddTask router={router} />
+        </div>
+        <Link href={"/"}>
+          <IoIosHome className="text-3xl text-black" />
+        </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
         {tasks && tasks.length > 0
