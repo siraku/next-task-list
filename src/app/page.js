@@ -9,7 +9,7 @@ export default function Home() {
           className="bg-white text-3xl text-blue-700 font-semibold py-2 px-6 rounded"
           href="/tasks"
         >
-          Go To Task List
+          Go To Your Task List
         </Link>
       </div>
     </div>
