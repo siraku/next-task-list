@@ -10,6 +10,7 @@ import AddTask from "@/components/addTask";
 
 const getTasks = async () => {
   try {
+    // the [http://localhost:3000] part can also be omittd when calling to server side , because the domain can be different in different environment
     const apiResponse = await fetch("http://localhost:3000/api/get-allTasks", {
       method: "GET",
       cache: "no-store",

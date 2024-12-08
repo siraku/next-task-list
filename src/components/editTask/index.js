@@ -54,16 +54,16 @@ export function EditTask({ currentTaskData, router }) {
           setOpenDialog(false);
         }}
       >
-        <DialogContent className="sm:max-w-[425px] text-white">
+        <DialogContent className="sm:max-w-[550px] text-black bg-gradient-to-r from-purple-500 to-blue-500 bg-opacity-30">
           <DialogHeader>
             <DialogTitle>Edit Task</DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="text-black font-bold">
               Edit your task name and description.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-right">
+              <Label htmlFor="name" className="text-right font-bold">
                 Title
               </Label>
               <Input
@@ -77,7 +77,7 @@ export function EditTask({ currentTaskData, router }) {
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="username" className="text-right">
+              <Label htmlFor="username" className="text-right font-bold">
                 Description
               </Label>
               <Input

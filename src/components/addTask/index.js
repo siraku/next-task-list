@@ -51,16 +51,16 @@ const AddTask = ({ router }) => {
           setTaskData(initialTaskFormData);
         }}
       >
-        <DialogContent className="sm:max-w-[425px] text-white">
+        <DialogContent className="sm:max-w-[550px] text-black bg-gradient-to-r from-purple-500 to-blue-500 bg-opacity-25">
           <DialogHeader>
             <DialogTitle>Add Task</DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="font-bold text-black">
               Add your task name and description.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-right">
+              <Label htmlFor="name" className="text-right font-bold">
                 Title
               </Label>
               <Input
@@ -70,11 +70,11 @@ const AddTask = ({ router }) => {
                 onChange={(event) => {
                   setTaskData({ ...taskData, title: event.target.value });
                 }}
-                className="col-span-3"
+                className="col-span-3 text-black"
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="username" className="text-right">
+              <Label htmlFor="username" className="text-right font-bold">
                 Description
               </Label>
               <Input
